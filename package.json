@@ -11,18 +11,18 @@
     "test": "mocha test"
   },
   "keywords": [
-    "duck"
+    "duck",
     "duckie",
     "type",
     "check",
-    "assertion",
+    "assertion"
   ],
   "devDependencies": {
     "mocha": "^2.1.0"
   },
   "bugs": {
     "url": "https://github.com/ssnau/duckie/issues"
-    },
+   },
   "homepage": "https://github.com/ssnau/duckie",
   "author": "ssnau <korige@gmail.com>",
   "license": "MIT"
