@@ -1,0 +1,28 @@
+{
+  "name": "typeofjs",
+  "version": "1.0.0",
+  "description": "a simple javascript type checker & assertion library",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ssnau/typeof.git"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "keywords": [
+    "typeof",
+    "typeof.js",
+    "assertion",
+    "type"
+  ],
+  "devDependencies": {
+    "mocha": "^2.1.0"
+  },
+  "bugs": {
+    "url": "https://github.com/ssnau/typeof/issues"
+    },
+  "homepage": "https://github.com/ssnau/typeof",
+  "author": "ssnau <korige@gmail.com>",
+  "license": "MIT"
+}
