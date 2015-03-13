@@ -1,28 +1,29 @@
 {
-  "name": "typeofjs",
+  "name": "duckie",
   "version": "1.0.0",
-  "description": "a simple javascript type checker & assertion library",
+  "description": "a simple javascript type checker and  assertion library",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ssnau/typeof.git"
+    "url": "https://github.com/ssnau/duckie.git"
   },
   "scripts": {
     "test": "mocha test"
   },
   "keywords": [
-    "typeof",
-    "typeof.js",
+    "duck"
+    "duckie",
+    "type",
+    "check",
     "assertion",
-    "type"
   ],
   "devDependencies": {
     "mocha": "^2.1.0"
   },
   "bugs": {
-    "url": "https://github.com/ssnau/typeof/issues"
+    "url": "https://github.com/ssnau/duckie/issues"
     },
-  "homepage": "https://github.com/ssnau/typeof",
+  "homepage": "https://github.com/ssnau/duckie",
   "author": "ssnau <korige@gmail.com>",
   "license": "MIT"
 }
