@@ -8,6 +8,7 @@
     "url": "https://github.com/ssnau/duckie.git"
   },
   "scripts": {
+    "build": "browserify index.js --standalone duckie -o dist/duckie.js",
     "test": "mocha test"
   },
   "keywords": [
@@ -18,11 +19,15 @@
     "assertion"
   ],
   "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-browserify": "^0.5.1",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^1.1.0",
     "mocha": "^2.1.0"
   },
   "bugs": {
     "url": "https://github.com/ssnau/duckie/issues"
-   },
+  },
   "homepage": "https://github.com/ssnau/duckie",
   "author": "ssnau <korige@gmail.com>",
   "license": "MIT"
