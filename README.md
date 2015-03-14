@@ -5,6 +5,15 @@ duckie
 A Javascript type annotation and assertion library with no dependecies. 
 You can make it work anywhere as long as you have es5 shimed your environment.
 
+Install
+--------
+
+For node/browserify/webpack user, use npm install.
+```
+npm install duckie
+```
+For client user, please download the builded file.
+
 Example
 --------
 ```
@@ -21,7 +30,7 @@ T.arrayOf({
 }).test([{name: 'jack'}]) //true
 ```
 
-Why I create duckie?
+Why did I create duckie?
 --------
 
 Javascript is a dynamic type language and it is hard to know the data structure of a parmameter. For example:
@@ -39,7 +48,7 @@ Of course, you can use JSDoc to annotate it. As below:
 ```
 /**
  *
- * @param {
+ * @param <Array.{String}> data what's this?
  */
 function post(data) {
 
@@ -83,14 +92,22 @@ All the type-checker below will contain 2 functions:
 
 There are 8 basic types for you to directly use. They are `bool`, `string`, `number`, `undefined`, `null`, `array`, `object`, `anything`.
 
-- `bool`, any value is `true` or `false`. `T.bool.test(true)` will get `true` and `T.bool.test(123)` will get `false`.
-- `string`, any value is a string. `T.string.test('abc')` will get `true` and `T.string.test(124)` will get `false`.
-- `number`, any value is a valid number or `NaN`.
-- `undefined`, value exactly equals to undefined.
-- `null`, value exactly equals to null.
-- `array`, any value with `Array.isArray(value)` to be true.
-- `object`, any value with `Object` in its proto chain.
-- `anything`, any value. `T.anything.test(/*anything*/)` will always return `true`.
+- `bool`
+- `string`
+- `number`
+- `undefined`
+- `null`
+- `array`
+- `object`
+- `anything`, any value.
+
+
+```
+duckie.bool.test(true)  => true
+duckie.number.test(123) => true
+duckie.array.test([1,2,3]) => true
+duckie.array.test('hello') => false
+```
 
 #### Conditional Type
 
