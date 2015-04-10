@@ -223,7 +223,7 @@ extend(proto, {
     assert: function (obj, type, msg) {
         curKey = '';
         if (!proto.is(obj, type)) {
-            var m = (Y.JSON.stringify(obj) + ' is not of type ' + stringify(type));
+            var m = (JSON.stringify(obj) + ' is not of type ' + stringify(type));
             if (curKey) {
                 m += '( key: @key )'.replace('@key', curKey);
             }
