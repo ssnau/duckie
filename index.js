@@ -46,6 +46,9 @@ var proto = {
     "array": function (obj) {
         return Array.isArray(obj);
     },
+    "function": function (obj) {
+        return typeof obj === 'function';
+    },
     /**
      *  null is Object, but undefined isn't.
      */
@@ -192,6 +195,9 @@ function getTypeFn(input) {
     if (typeof input === 'string' && input.length) {
         if (proto[input.toLowerCase()]) {
             return proto[input.toLowerCase()];
+        }
+        if (input.indexOf('|') === -1 && input.indexOf('?') === -1) {
+            throw new Error(input + " type is not a valid type");
         }
         var isOptional = input.indexOf('?') > -1;
         var types = input.replace('?', '').split('|');

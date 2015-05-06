@@ -1,6 +1,6 @@
 {
   "name": "duckie",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "a simple javascript type checker and  assertion library",
   "main": "index.js",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "https://github.com/ssnau/duckie.git"
   },
   "scripts": {
-    "build": "browserify index.js --standalone duckie -o dist/duckie.js",
+    "build": "browserify index.js --standalone duckie -o build/duckie.js",
     "test": "mocha test"
   },
   "keywords": [
