@@ -135,7 +135,7 @@ var proto = {
     }
 };
 
-['bool', 'string', 'number', 'undefined', 'array', 'anything', 'object', 'null'].forEach(function(name) {
+['bool', 'function', 'string', 'number', 'undefined', 'array', 'anything', 'object', 'null'].forEach(function(name) {
     proto[name] = wrap(proto[name], function(){return name;});
 });
 // aliasing
