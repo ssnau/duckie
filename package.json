@@ -1,6 +1,6 @@
 {
   "name": "duckie",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "a simple javascript type checker and  assertion library",
   "main": "index.js",
   "repository": {
