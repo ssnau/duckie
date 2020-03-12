@@ -18,9 +18,11 @@ Array<TypeDescriptor> |
 };
 
 
-interface Duckie {
+type Duckie = (T: TypeDescriptor) => Tester;
+
+interface DuckieProto {
   bool : Tester;
-  boolean: (T: TypeDescriptor) => Tester;
+  boolean: Tester;
   string : Tester;
   number : Tester;
   undefined: Tester;
@@ -41,5 +43,6 @@ interface Duckie {
   assert: (obj: any, typedesc: TypeDescriptor, errorMsg?: string) => void;
   is: (obj: any, typedesc: TypeDescriptor) => boolean;
 }
-declare let duckie: Duckie;
+
+declare let duckie: DuckieProto & Duckie;
 export default duckie;
