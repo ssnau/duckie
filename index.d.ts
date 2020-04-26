@@ -42,6 +42,8 @@ interface DuckieProto {
   
   assert: (obj: any, typedesc: TypeDescriptor, errorMsg?: string) => void;
   is: (obj: any, typedesc: TypeDescriptor) => boolean;
+
+  createChecker: (checker: (obj: any) => boolean, toString: () => string) => Tester;
 }
 
 declare let duckie: DuckieProto & Duckie;

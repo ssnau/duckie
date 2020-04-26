@@ -77,17 +77,17 @@ describe("composite type", function() {
   var OneOf = t.oneOf;
   var OneOfType = t.oneOfType;
   var MayBe = t.mayBe;
-  
+
   it('ObjectOf', function(){
     assert.ok(
       is(
-        {name: "jack"}, 
+        {name: "jack"},
         ObjectOf({name: String})
       )
     );
     assert.ok(
       is(
-        {name: "jack", age: 18}, 
+        {name: "jack", age: 18},
         ObjectOf({name: String})
         )
       );
@@ -149,7 +149,7 @@ describe("composite type", function() {
   it('OneOfType', function () {
     assert.equal(true, is('ccc', OneOfType([Number, String]) ));
     assert.equal(true, is(1, OneOfType([Number, String]) ));
-    assert.equal(true, 
+    assert.equal(true,
         OneOfType([Number, {name: String}]).test({name: 'hello'})
     );
   });
@@ -194,4 +194,27 @@ describe("T shortcut wrap #", function() {
     assert.equal(true, t([{name: String}]).test([{name: 'jack'}]));
   });
 
+});
+
+describe("customized checker", function() {
+  it('number-aliked customized checker', function () {
+    const numberAlikeChecker = t.createChecker(function (input) {
+      return String(input - 0) !== 'NaN';
+    }, () => 'number-aliked')
+
+    assert.equal(true, t(numberAlikeChecker).test(1));
+    assert.equal(true, t(numberAlikeChecker).test(-1));
+    assert.equal(true, t(numberAlikeChecker).test('-1'));
+    assert.equal(true, t(numberAlikeChecker).test('-1.35'));
+    assert.equal(false, t(numberAlikeChecker).test('abc-1.35'));
+    assert.equal(false, t(numberAlikeChecker).test('1.35abc'));
+
+    // can run without duckie after creation
+    try {
+      numberAlikeChecker.assert('aa1.35');
+    } catch (e) {
+      assert.equal('"aa1.35" is not of type number-aliked', e.message)
+    }
+    assert.equal(false, numberAlikeChecker.test('1.35abc'));
+  });
 });
