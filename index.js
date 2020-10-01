@@ -12,7 +12,7 @@ function stringify(object) {
         }).join(',') + "}";
       case (typeof object === 'string'):
         return '"' + object + '"';
-      // type 
+      // type
       case (object === String):
         return 'String';
       case (object === Boolean):
@@ -238,6 +238,9 @@ extend(proto, {
     },
     is: function (obj, type) {
         return getTypeFn(type)(obj);
+    },
+    createChecker(fn, toStringFn) {
+      return wrap(fn, toStringFn);
     }
 });
 

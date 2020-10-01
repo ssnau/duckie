@@ -16,7 +16,7 @@ For client user, please download the dist file in the `build` directory.
 
 Example
 --------
-```
+```js
 var duckie = require('duckie');
 duckie.array.test([1,2,3]) // true
 duckie.array.test('123') // false
@@ -30,41 +30,12 @@ duckie.arrayOf({
 }).test([{name: 'jack'}]) //true
 ```
 
-Why did I create duckie?
+Example
 --------
-
-Javascript is a dynamic type language and it is hard to know the data structure of a parmameter. For example:
-
-```
-function post(data) {
-  // the code may access different field of data
-  // in different part and you don't know what exactly
-  // the function want util you throughly read the code
-}
-```
-
-Of course, you can use JSDoc to annotate it. As below:
-
-```
-/**
- *
- * @param <Array.{String}> data what's this?
- */
-function post(data) {
-
-}
-```
-
-There are 4 weakness in JSDoc:
-
-- It is hard to rememeber and learn the grammar of JSDoc annotation.
-- You cannot annotate complex data structure in a single line.
-- JSDoc wont do runtime check for you.
-- It is a bundle for you to write JSDoc without an IDE.
 
 With duckie, it will ease all of your pain. Defining types is just like defining an object.
 
-```
+```js
 function post(data) {
   duckie.ArrayOf({
     name: String,
@@ -72,8 +43,6 @@ function post(data) {
   }).assert(data); // if data doesn't fit the type, it will throw error
 }
 ```
-
-So that's why duckie comes out.
 
 Quick Start
 --------
@@ -102,7 +71,7 @@ There are 8 basic types for you to directly use, they are:
 - `anything`, means any value.
 
 example:
-```
+```js
 duckie.bool.test(true)  => true
 duckie.number.test(123) => true
 duckie.array.test([1,2,3]) => true
@@ -112,18 +81,18 @@ duckie.array.test('hello') => false
 #### Conditional Type
 
 - `oneOf(Array)`, any value that is one of the enums.
-```
+```js
 duckie.OneOf(['a', 'b', 'c']).test('a') // true
 duckie.OneOf([1, 2, ,3]).test('a')      // false
 ```
 - `oneOfType([Type1, Type2..TypeN])`, any value that belongs to one of the listed types.
-```
+```js
 duckie.oneOfType([String, Array]).test('abc') // true
 duckie.oneOfType([String, Array]).test([]) // true
 duckie.oneOfType([String, Array]).test(123) //false
 ```
 - `maybe(Type)`, any value that belongs to the type or exactly equals to `undefined` or `NaN`.
-```
+```js
 duckie.maybe(String).test('abc') //true
 duckie.maybe(String).test(null)  // true
 duckie.maybe(String).test(undefined) //true
@@ -133,13 +102,13 @@ duckie.maybe(String).test(1)   // false
 #### Composite Type
 
 - `arrayOf(Type)`, any value that is an array and all the items in the array is type `Type`
-```
+```js
 duckie.arrayOf(String).test(['abc', 'bcd']) //true
 duckie.arrayOf(String).test(['abc', 1])     // false, because there is a number 1 which isn't of type String
 duckie.arrayOf(duckie.maybe(String)).test(['abc', null])  //true, it means array can contain string(s) or null/undefined(s)
 ```
 - `objectOf(/*definition*/)`, an object that contains the structure described with `definition`.
-```
+```js
 duckie.objectOf({name: String}).test({name: 'jack'})   // true
 duckie.objectOf({name: String}).test({name: 'jack', age: 18}) // true, because it only check duck type
 duckie.objectOf({name: String, gender: String).test({name: 'jack'}) //false, because it not contain gender
@@ -156,7 +125,7 @@ How to desribe a data structure that:
 
 Obviously, we can combine `arrayOf` and `ObjectOf` together to achieve the goal.
 
-```
+```js
 // first, build an array with person type
 duckie.arrayOf(Person)
 
@@ -178,7 +147,7 @@ Do you find it a little verbose? It looks like we are using something DSL rather
 
 For `arrayOf` and `objectOf`, you don't need to wrap any `type checker` for inner definitions. It means:
 
-```
+```js
 duckie.arrayOf(duckie.objectOf({
   name: String
 }))
@@ -192,7 +161,7 @@ duckie.arrayOf({
 
 so the complex definition of `T.arrayOf(Person)` can be written as:
 
-```
+```js
 duckie.arrayOf({  // omitting the objectOf makes your code cleaner
   name: String,
   age:  Number,
@@ -204,7 +173,7 @@ duckie.arrayOf({  // omitting the objectOf makes your code cleaner
 
 For the reason we may want to defined the data structure just like defining the data itself. We can use `duckie(Type)` to create a type checker. For Example:
 
-```
+```js
 duckie([]).test([1,2,3]) // the same as duckie.array.test([1,2,3])
 duckie([Number]).test([1,2,3]) // the same as duckie.arrayOf(Number).test([1,2,3])
 duckie({name: String}).test({name: 'jack'})  // the same as duckie.objectOf({name: String}).test({name: 'jack'})
